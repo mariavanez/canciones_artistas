@@ -25,7 +25,7 @@
 						<c:forEach items="${cancionesLista}" var="cancion">
 							<tr>
 								<td>${cancion.titulo}</td>
-								<td>${cancion.artista}</td>
+								<td>${cancion.artista.nombre} ${cancion.artista.apellido}</td>
 								<td>
 									<a href="/canciones/detalle/${cancion.id}" class="btn btn-primary">Ver detalles</a>
 								</td>
@@ -33,8 +33,9 @@
 						</c:forEach>
 					</tbody>
 				</table>
-				<div class="text-center mt-4 mb-4">
+				<div class="d-flex justify-content-center align-items-center gap-3 mb-3 mt-4" >
 					<a href="/canciones/formulario/agregar" class="btn btn-success">Agregar una Canción</a>
+					<a href="/artistas" class="btn btn-outline-secondary">🎤 Ir a Artistas</a>
 				</div>
 			</div>
 		</div>

@@ -22,27 +22,34 @@
 					</div>
 					<div class="mb-3 shadow-sm">
 						<form:label path="artista" class="form-label">Artista:</form:label>
-						<form:input path="artista" placeholder="Ingresa un artista..." class="form-control"></form:input>
-						<form:errors path="artista" class="text-danger bg-light rounded p-1 d-block mt-1"></form:errors>
+						<form:select path="artista.id" class="form-select">
+							<form:option value="" label="Selecciona un artista"/>
+							<c:forEach items="${artistas}" var="artista">
+								<form:option value="${artista.id}">${artista.nombre} ${artista.apellido}</form:option>
+							</c:forEach>
+						</form:select>
 					</div>
 					<div class="mb-3 shadow-sm">
 						<form:label path="album" class="form-label">Álbum:</form:label>
 						<form:input path="album" placeholder="Ingresa un album..." class="form-control"></form:input>
-						<form:errors path="album" class="text-danger bg-light rounded p-1 d-block mt-1"></form:errors>
+						<form:errors path="album" class="text-danger bg-light"></form:errors>
 					</div>
 					<div class="mb-3 shadow-sm">
 						<form:label path="genero" class="form-label">Género:</form:label>
 						<form:input path="genero" placeholder="Ingresa un género..." class="form-control"></form:input>
-						<form:errors path="genero" class="text-danger bg-light rounded p-1 d-block mt-1"></form:errors>
+						<form:errors path="genero" class="text-danger bg-light"></form:errors>
 					</div>
 					<div class="mb-3 shadow-sm">
 						<form:label path="idioma"  class="form-label">Idioma:</form:label>
 						<form:input path="idioma" placeholder="Ingresa el idioma..."  class="form-control"></form:input>
-						<form:errors path="idioma" class="text-danger bg-light rounded p-1 d-block mt-1"></form:errors>
+						<form:errors path="idioma" class="text-danger bg-light"></form:errors>
 					</div>
 					<div class="d-flex justify-content-center align-items-center gap-3 mb-2">
 						<button type="submit" class="btn btn-success">Agregar Canción</button>
-						<a href="/canciones" class="btn btn-outline-secondary">🔙 Volver a la lista de canciones</a>
+						<a href="/artistas/formulario/agregar" class="btn btn-primary">Agregar Artista Nuevo</a>
+					</div>
+					<div class="text-center">
+						<a href="/canciones" class="btn btn-outline-secondary mb-2">🔙 Volver a la lista de canciones</a>
 					</div>
 				</form:form>
 			</div>

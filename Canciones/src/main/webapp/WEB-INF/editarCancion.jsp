@@ -23,9 +23,13 @@
 						<form:errors path="titulo" class="text-danger" />
 					</div>
 					<div class="mb-3 shadow-sm">
-						<form:label path="artista">Artista:</form:label>
-						<form:input path="artista" placeholder="Ingresa un artista..." class="form-control" />
-						<form:errors path="artista" class="text-danger" />
+						<form:label path="artista" class="form-label">Artista:</form:label>
+						<form:select path="artista.id" class="form-select">
+							<form:option value="" label="Selecciona un artista"/>
+							<c:forEach items="${artistas}" var="artista">
+								<form:option value="${artista.id}">${artista.nombre} ${artista.apellido}</form:option>
+							</c:forEach>
+						</form:select>
 					</div>
 					<div class="mb-3 shadow-sm">
 						<form:label path="album">Álbum:</form:label>
@@ -43,8 +47,11 @@
 						<form:errors path="idioma" class="text-danger" />
 					</div>
 					<div class="d-flex justify-content-center align-items-center gap-3 mb-2">
-						<input type="submit" class="btn btn-info" value="Guardar cambios">
-						<a href="/canciones" class="btn btn-outline-secondary">🔙 Volver a la lista de canciones</a>
+						<input type="submit" class="btn btn-success" value="Guardar cambios">
+						<a href="/artistas/formulario/agregar" class="btn btn-primary">Agregar Artista Nuevo</a>
+					</div>
+					<div class="text-center">
+						<a href="/canciones" class="btn btn-outline-secondary mb-2">🔙 Volver a la lista de canciones</a>
 					</div>
 				</form:form>
 			</div>

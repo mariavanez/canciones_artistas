@@ -6,9 +6,12 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.PrePersist;
 import jakarta.persistence.PreUpdate;
 import jakarta.persistence.Table;
@@ -27,9 +30,9 @@ public class Cancion {
 	@Size(min=5, message="El título de la canción debe contener al menos 5 caracteres.")
 	private String titulo;
 	
-	@NotBlank(message="Este campo es obligatorio.")
-	@Size(min=3, message="El nombre del artista debe contener al menos 3 caracteres.")
-	private String artista;
+	@ManyToOne(fetch=FetchType.LAZY)
+	@JoinColumn(name = "artista_id")
+	private Artista artista;
 	
 	@NotBlank(message="Este campo es obligatorio.")
 	@Size(min=3, message="El album del artista debe contener al menos 3 caracteres.")
@@ -71,11 +74,11 @@ public class Cancion {
 		this.titulo = titulo;
 	}
 
-	public String getArtista() {
+	public Artista getArtista() {
 		return artista;
 	}
 
-	public void setArtista(String artista) {
+	public void setArtista(Artista artista) {
 		this.artista = artista;
 	}
 

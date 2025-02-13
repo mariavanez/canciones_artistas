@@ -1,0 +1,24 @@
+package com.maria.controladores;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+
+import com.maria.servicios.ServicioArtistas;
+
+@Controller
+public class ControladorArtistas {
+
+	@Autowired
+	private ServicioArtistas servArtistas;
+	
+	@GetMapping("/artistas")
+	public String desplegarArtistas(Model model) {
+		
+		Artistas listaArtistas = servArtistas.obtenerTodosLosArtistas();
+		model.addAttribute("listaArtistas", listaArtistas);
+		return "artistas.jsp";
+		
+	}
+}

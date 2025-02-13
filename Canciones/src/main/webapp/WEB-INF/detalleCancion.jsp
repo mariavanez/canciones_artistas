@@ -14,7 +14,7 @@
 			<div class="col-12 col-md-6">
 				<h1 class="text-center mb-3">Detalles de ${cancion.titulo}</h1>
 				<div class="text-center mb-4">
-					<img src="https://via.placeholder.com/200" alt="Portada de ${cancion.titulo}" id="portadaCancion" class="img-fluid rounded shadow">
+					<img src="" alt="Portada de ${cancion.titulo}" id="portadaCancion" class="img-fluid rounded shadow">
 				</div>
 				<table class="table table-striped table-hover shadow-sm rounded">
 					<thead>
@@ -29,7 +29,7 @@
 					<tbody>
 						<tr>
 							<td id="tituloCancion">${cancion.titulo}</td>
-							<td id="artistaCancion">${cancion.artista}</td>
+							<td id="artistaNombre">${cancion.artista.nombre} ${cancion.artista.apellido}</td>
 							<td>${cancion.album}</td>
 							<td>${cancion.genero}</td>
 							<td>${cancion.idioma}</td>
@@ -44,13 +44,13 @@
 					</form>
 				</div>
 				<div class="d-flex justify-content-center align-items-center" >
-					<a href="/canciones" class="btn btn-outline-secondary">🔙 Volver a la lista de canciones</a>
+					<a href="/canciones" class="btn btn-outline-secondary">🎵 Ir a Canciones</a>
 				</div>
 				
 			</div>
 		</div>
 	</main>
 	
-	<script src="/js/detalleCancion.js"></script>
+	<script src="/js/script.js"></script>
 </body>
 </html>

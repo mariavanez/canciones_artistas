@@ -1,0 +1,16 @@
+document.addEventListener("DOMContentLoaded", function() {
+	
+	let artista = document.getElementById("artistaNombre").textContent;
+	let imgArtista = document.getElementById("fotoArtista");
+	
+	let enlaceArtista = `https://itunes.apple.com/search?term=${encodeURIComponent(artista)}&entity=musicArtist&limit=1`;
+	
+	fetch(enlaceArtista)
+			.then(respuesta => respuesta.json())
+			.then(dato => {
+				if(dato.results.length > 0) {
+					imgArtista.src = dato.results[0].artworkUrl100.replace("100x100", "300x300");	
+				}
+			})
+			.catch(error => console.log("Error al cargar la imagen", error));
+})

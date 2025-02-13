@@ -11,7 +11,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 
+import com.maria.modelos.Artista;
 import com.maria.modelos.Cancion;
+import com.maria.servicios.ServicioArtistas;
 import com.maria.servicios.ServicioCanciones;
 
 import jakarta.validation.Valid;
@@ -22,6 +24,9 @@ public class ControladorCanciones {
 	@Autowired 
 	private ServicioCanciones serv;
 	
+	@Autowired
+	private ServicioArtistas servArtistas;
+	
 	@GetMapping("/canciones")
 	public String desplegarCanciones(Model model) {
 		model.addAttribute("cancionesLista", serv.obtenerTodasLasCanciones());
@@ -29,7 +34,7 @@ public class ControladorCanciones {
 	}
 	
 	@GetMapping("/canciones/detalle/{idCancion}")
-	public String desplegarDetalleCancion(@PathVariable(value="idCancion") Long idCancion,
+	public String desplegarDetalleCancion(@PathVariable("idCancion") Long idCancion,
 										  Model model) {
 		Cancion cancion = serv.obtenerCancionPorId(idCancion);
 		model.addAttribute("cancion", cancion);
@@ -41,6 +46,7 @@ public class ControladorCanciones {
 	public String formularioAgregarCancion(Model model) {
 		
 		model.addAttribute("cancion", new Cancion());
+		model.addAttribute("artistas", servArtistas.obtenerTodosLosArtistas());
 		return "agregarCancion.jsp";
 	}
 	
@@ -54,6 +60,8 @@ public class ControladorCanciones {
 			return "agregarCancion.jsp";
 		}
 		
+		Artista artista = servArtistas.obtenerArtistasPorId(cancion.getArtista().getId());
+		cancion.setArtista(artista);
 		serv.agregarCancion(cancion);
 		return "redirect:/canciones";
 	}
@@ -65,6 +73,7 @@ public class ControladorCanciones {
 		
 		Cancion cancionEditada = serv.obtenerCancionPorId(id);
 		model.addAttribute("cancion", cancionEditada);
+		model.addAttribute("artistas", servArtistas.obtenerTodosLosArtistas());
 		return "editarCancion.jsp";
 	}
 	
@@ -77,6 +86,7 @@ public class ControladorCanciones {
 			model.addAttribute("cancion", cancionEditada);
 			return "editarCancion.jsp";
 		} else {
+			model.addAttribute("artistas", servArtistas.obtenerTodosLosArtistas());
 			serv.actualizaCancion(cancionEditada);
 			return "redirect:/canciones";
 		}
