@@ -1,8 +1,0 @@
-package com.maria.modelos;
-
-@Entity
-@Table(name="artistas")
-public class Artista {
-
-	
-}
